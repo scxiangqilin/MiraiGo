@@ -339,7 +339,12 @@ func decodeAtAllRemainResponse(_ *QQClient, pkt *network.Packet) (any, error) {
 
 func (c *QQClient) parseGroupMessage(m *msg.Message) *message.GroupMessage {
 	group := c.FindGroup(m.Head.GroupInfo.GroupCode.Unwrap())  
-	log.Printf("parseGroupMessage info: %+v", m)
+	//log.Printf("parseGroupMessage info: %+v", m)
+	 // 将 m 转换为 JSON 格式字符串，便于日志输出
+	 jsonString, _ := json.MarshalIndent(m, "", "  ")
+
+	 // 打印 m 的所有内容
+	 log.Printf("Received group message: %v\n", string(jsonString))
 	if group == nil {
 		c.debug("sync group %v.", m.Head.GroupInfo.GroupCode.Unwrap())
 		info, err := c.GetGroupInfo(m.Head.GroupInfo.GroupCode.Unwrap())
