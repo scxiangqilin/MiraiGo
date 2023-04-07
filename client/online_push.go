@@ -262,7 +262,7 @@ func msgType0x210Sub44Decoder(c *QQClient, protobuf []byte) error {
 	if group := c.FindGroup(s44.GroupSyncMsg.GrpCode); group != nil {
 		group.lock.Lock()
 		defer group.lock.Unlock()
-		c.info("parseGroupMessage infoB %+v", s44)
+		c.info("parseGroupMessage infoC %+v", s44)
 		var lastJoinTime int64 = 0
 		for _, m := range group.Members {
 			if lastJoinTime < m.JoinTime {
