@@ -9,6 +9,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"log"
 
 	"github.com/pkg/errors"
 
@@ -337,8 +338,8 @@ func decodeAtAllRemainResponse(_ *QQClient, pkt *network.Packet) (any, error) {
 }
 
 func (c *QQClient) parseGroupMessage(m *msg.Message) *message.GroupMessage {
-	group := c.FindGroup(m.Head.GroupInfo.GroupCode.Unwrap()) 
-	c.debug("parseGroupMessage info %+v", m)
+	group := c.FindGroup(m.Head.GroupInfo.GroupCode.Unwrap())  
+	log.Printf("parseGroupMessage info: %+v", m)
 	if group == nil {
 		c.debug("sync group %v.", m.Head.GroupInfo.GroupCode.Unwrap())
 		info, err := c.GetGroupInfo(m.Head.GroupInfo.GroupCode.Unwrap())
