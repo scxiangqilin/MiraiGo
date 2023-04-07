@@ -228,7 +228,7 @@ func troopAddMemberBroadcastDecoder(c *QQClient, pMsg *msg.Message, _ network.Re
 
 			// 打印 m 的所有内容
 			c.info("Received group messageB: %v\n", string(pMsg))
-
+ 
 			c.info("parseGroupMessage infoB %+v", pMsg)
 			mem, err := c.GetMemberInfo(group.Code, pMsg.Head.AuthUin.Unwrap())
 			if err != nil {
