@@ -338,7 +338,7 @@ func decodeAtAllRemainResponse(_ *QQClient, pkt *network.Packet) (any, error) {
 
 func (c *QQClient) parseGroupMessage(m *msg.Message) *message.GroupMessage {
 	group := c.FindGroup(m.Head.GroupInfo.GroupCode.Unwrap())
-	c.info("parseGroupMessage infoA %+v", m)
+	c.error("parseGroupMessage info %+v", m)
 	if group == nil {
 		c.debug("sync group %v.", m.Head.GroupInfo.GroupCode.Unwrap())
 		info, err := c.GetGroupInfo(m.Head.GroupInfo.GroupCode.Unwrap())
