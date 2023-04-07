@@ -223,6 +223,12 @@ func troopAddMemberBroadcastDecoder(c *QQClient, pMsg *msg.Message, _ network.Re
 		}
 	} else {
 		if group != nil && group.FindMember(pMsg.Head.AuthUin.Unwrap()) == nil {
+			 // 将 m 转换为 JSON 格式字符串，便于日志输出
+			jsonString, _ := json.MarshalIndent(pMsg, "", "  ")
+
+			// 打印 m 的所有内容
+			c.info("Received group messageB: %v\n", string(pMsg))
+
 			c.info("parseGroupMessage infoB %+v", pMsg)
 			mem, err := c.GetMemberInfo(group.Code, pMsg.Head.AuthUin.Unwrap())
 			if err != nil {
